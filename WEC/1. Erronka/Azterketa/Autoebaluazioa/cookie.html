@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <button type="button" onclick="document.cookie='erabiltzailea = Jon; expires=Sat 7 Oct 2029 12:15:00 GMT'">Cookie</button>
+        <button type="button" onclick="window.alert(document.cookie)">Bistaratu</button>
+
+        <script>
+            var kotxea = {
+                gurpilak: 5,
+                modelo: "kakatua"
+            };
+            for (eremua in kotxea){
+                console.log(eremua);
+                console.log(kotxea[eremua]);
+            }
+        </script>
+    </body>
+</html>
