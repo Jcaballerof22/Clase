@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <style>
+            .verde {
+                color: green;
+            }
+
+            .rojo {
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <h1 :class="{ verde: contador > 0, rojo: contador < 0 }">{{contador}}</h1>
+            <button @click="txikituKontadorea" >Txikitu</button>
+            <button @click="handituKontadorea">Handitu</button>
+            <button @click="berrabiaraziKontadorea">Berrabiarazi</button>
+        </div>
+
+        <script>
+            var app = new Vue ({
+                el: '#app',
+                data: {
+                    contador: 0
+                },
+                methods: {
+                    txikituKontadorea: function(){
+                        this.contador--;
+                    },
+                    handituKontadorea: function(){
+                        this.contador++;
+                    },
+                    berrabiaraziKontadorea: function(){
+                        this.contador = 0;
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

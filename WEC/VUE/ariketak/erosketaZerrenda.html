@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+        <div class="container">
+            <div id="app">
+                <h1>Erosketa Zerrenda</h1>
+                <ul>
+                    <li v-for="erosketa in zerrenda" v-if="!erosketa.completed">
+                        <span v-text="erosketa.title"></span>
+                        <span v-text="erosketa.kantitatea"></span>
+                        <button @click="gehituKantitatea(erosketa)" class="btn btn-primary">+</button>
+                        <button @click="kenduKantitatea(erosketa)" class="btn btn-danger">-</button>
+                        <span @click="erosketa.completed=true" v-if="!erosketa.completed" class="bi bi-square"></span>
+                    </li>
+                    <li class="d-flex">
+                        <input v-on:keyup.enter="gehituErosketa" v-model="erosketaBerria" type="text" class="form-control">
+                        <button @click="gehituErosketa" class="btn btn-primary">+</button>
+                    </li>
+                </ul>
+                <h1>Erositakoak</h1>
+                <ul>
+                    <li v-for="erosketa in zerrenda" v-if="erosketa.completed">
+                        <span v-text="erosketa.title"></span>
+                        <span v-text="erosketa.kantitatea"></span>
+                        <!-- <button @click="gehituKantitatea(erosketa)" class="btn btn-primary">+</button>
+                        <button @click="kenduKantitatea(erosketa)" class="btn btn-danger">-</button> -->
+                        <span @click="erosketa.completed=false" v-if="erosketa.completed" class="bi bi-check2-square"></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    erosketaBerria: "",
+                    zerrenda: [
+                        {title: 'Leche', completed: true, kantitatea: 1},
+                        {title: 'Agua', completed: true, kantitatea: 1},
+                        {title: 'Cocacola', completed: false, kantitatea: 1}
+                    ]
+                },
+                methods: {
+                    gehituErosketa: function(){
+                        this.zerrenda.push({
+                            title: this.erosketaBerria,
+                            completed: false,
+                            kantitatea: 1
+                        });
+                        this.erosketaBerria="";
+                    },
+                    gehituKantitatea: function(erosketa){
+                        erosketa.kantitatea++;
+                    },
+                    kenduKantitatea: function(erosketa){
+                        erosketa.kantitatea--;
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <h1 v-show="message.length > 2">Kaixo<span v-text="message"></span></h1>
+            <input type="text" v-model="message">
+        </div>
+
+        <script>
+            var app = new Vue ({
+                el: '#app',
+                data: {
+                    message: 'yyyygg!'
+                }
+            })
+        </script>
+    </body>
+</html>

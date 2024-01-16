@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+        <div class="container">
+            <div id="app">
+                <h1>Zereginen zerrenda</h1>
+                <ul>
+                    <li v-for="zeregina in zereginak">
+                        <span v-text="zeregina.title"></span>
+                        <small @click="zeregina.completed=false" v-if="zeregina.completed" class="bi bi-check2-square"></small>
+                        <small @click="zeregina.completed=true" v-else class="bi bi-square"></small>
+                    </li>
+                    <li class="d-flex">
+                        <input v-on:keyup.enter="addTask" v-model="zereginBerria" type="text" class="form-control">
+                        <button @click="addTask" class="btn btn-primary">+</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    zereginBerria: "",
+                    zereginak: [
+                        {title: "VueJ ikasi", completed: true},
+                        {title: "Spring ikasi", completed: false},
+                        {title: "Laravel ikasi", completed: false}
+                    ]
+                },
+                methods: {
+                    addTask: function(){
+                        if (this.zereginBerria.length < 1) return alert("Zeregina ezin da hutsik egon.");
+                        this.zereginak.push({
+                            title: this.zereginBerria,
+                            completed: false
+                        });
+                        this.zereginBerria="";
+                    }
+                }
+            })
+        </script>
+        
+    </body>
+    
+</html>
