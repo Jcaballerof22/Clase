@@ -8,6 +8,7 @@
   const postXPage = 10;
   const inicio = ref(0);
   const fin = ref(postXPage);
+  const favorito = ref('');
 
   fetch('https://jsonplaceholder.typicode.com/posts')
     .then(response => response.json())
@@ -28,12 +29,17 @@
       inicio.value -= postXPage;
       fin.value -= postXPage;
     }
+
+    const cambiarFavorito = (title) => {
+      favorito.value = title;
+    }
 </script>
 
 <template>
   <h1>Hello {{ name }}</h1>
   <div class="container">
     <h1>Nire lehenengo proiektua</h1>
+    <p>Favorito: {{ favorito }}</p>
     <Paginate 
       @next = "next"
       @prev = "prev"
@@ -51,6 +57,7 @@
       :id="post.id"
       :title="post.title"
       :body="post.body"
+      @cambiarFav = "cambiarFavorito"
       class="mb-2">
     </BlogPost>
   </div>
