@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "Mugatutako direktorioa"
+AuthUserFile /etc/apache2/.htpasswd
+Require user administratzaile

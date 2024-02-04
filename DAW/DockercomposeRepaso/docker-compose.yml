@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  apache: 
+    container_name: apache
+    build: ./apache
+    ports: 
+      - "8080:80"
+    volumes:
+      - ./apache:/var/www/html
+
+  mysql:
+    container_name: mysql
+    build: ./mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: daw
+      MYSQL_USER: sanjorge
+      MYSQL_PASSWORD: sanjorge
+    ports:
+      - "3306:3306"
+
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin/phpmyadmin:latest
+    ports:
+      - "8081:80" 
+    environment:
+      PMA_HOST: mysql
